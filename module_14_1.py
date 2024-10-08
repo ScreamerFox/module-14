@@ -14,7 +14,7 @@ balance INTEGER NOT NULL)
 for i in range(10):
     cursor.execute('''
     INSERT INTO Users (id, username, email, age, balance) VALUES (?, ?, ?, ?, ?)
-    ''', (f'{i+1}', f'User{i}', f'example{i}@gmail.com', f'{(i+1) * 10}', 1000))
+    ''', (i+1, f'User{i}', f'example{i}@gmail.com', (i+1) * 10, 1000))
 
 
 cursor.execute("SELECT * FROM Users")
