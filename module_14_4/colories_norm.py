@@ -12,7 +12,7 @@ from aiogram.dispatcher import FSMContext
 
 
 
-api = Script_dat.token_hz # Ключ Telegram-бота
+api = Script_dat.token_LB # Ключ Telegram-бота
 bot = Bot(token=api)  # Обект бота
 # Диспатчер для обработки событий
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -26,8 +26,6 @@ class UserState(StatesGroup):  # класс параметров
     growth = State()
     weight = State()
     sex = State()
-
-
 
 
 
