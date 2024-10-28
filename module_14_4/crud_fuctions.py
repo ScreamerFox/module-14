@@ -15,7 +15,7 @@ def initiate_db():
     );
     ''')
 
-initiate_db()
+
 
 #Создание продукта______________________________________________________________________________________________________
 def create_prod():
@@ -37,15 +37,18 @@ def get_all_products():
 def create_4_prod():
     if not get_all_products():
         create_prod()
-create_4_prod()
+
 
 def add_prod(id, title, description, price):
     cursor.execute("INSERT INTO Products(id, title, description, price) VALUES (?,?,?,?)", (id, title, description, price))
+
+
+
+if __name__ == '__main__':
+    initiate_db()
+    create_4_prod()
     connection.commit()
 
 
 
-
-
-connection.commit()
 

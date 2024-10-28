@@ -1,5 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 from crud_fuctions import get_all_products as get_pr
+import crud_fuctions as cr
 
 
 kb = ReplyKeyboardMarkup(
@@ -31,3 +32,4 @@ kb_inline_buy = InlineKeyboardMarkup(
         ]
     ]
 )
+

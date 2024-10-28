@@ -12,12 +12,12 @@ from aiogram.dispatcher import FSMContext
 
 
 
-api = Script_dat.token_Grass # Ключ Telegram-бота
+api = Script_dat.token_hz # Ключ Telegram-бота
 bot = Bot(token=api)  # Обект бота
 # Диспатчер для обработки событий
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-cr.get_all_products()
+get_pr()
 
 
 
@@ -27,10 +27,6 @@ class UserState(StatesGroup):  # класс параметров
     weight = State()
     sex = State()
 
-
-@dp.callback_query_handler(lambda call: True)
-async def handle_all_callbacks(call):
-    print(f"Received callback with data: {call.data}")
 
 
 
@@ -105,30 +101,33 @@ async def get_buying_list(message):
     with open("imgs/4.jpg", 'rb') as img:
         await message.answer_photo(img, f"Название: {get_pr()[3][1]} | Описание: {get_pr()[3][2]} | Цена: {get_pr()[3][3]}")
     await message.answer("Выберите продукт для покупки:", reply_markup=kb.kb_inline_buy)
-    cr.connection.close()
 
 
-@dp.callback_query_handler(lambda call: call.data.startswith('product_buying'))
+
+
+
+@dp.callback_query_handler(text='product_buying1')
 async def send_confirm_message(call):
-    print("Received callback for product_buying1")
     await call.message.answer(f"Вы успешно приобрели {get_pr()[0][1]}!")
     await call.answer()
 
-@dp.callback_query_handler(lambda call: call.data.startswith('product_buying1'))
+@dp.callback_query_handler(text='product_buying2')
 async def send_confirm_message(call):
-    print("Received callback for product_buying2")
     await call.message.answer(f"Вы успешно приобрели {get_pr()[1][1]}!")
     await call.answer()
+
 
 @dp.callback_query_handler(text='product_buying3')
 async def send_confirm_message(call):
     await call.message.answer(f"Вы успешно приобрели {get_pr()[2][1]}!")
     await call.answer()
 
+
 @dp.callback_query_handler(text='product_buying4')
 async def send_confirm_message(call):
     await call.message.answer(f"Вы успешно приобрели {get_pr()[3][1]}!")
     await call.answer()
+
 
 
 
