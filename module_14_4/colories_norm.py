@@ -28,11 +28,6 @@ class UserState(StatesGroup):  # класс параметров
     sex = State()
 
 
-@dp.callback_query_handler(lambda call: True)
-async def handle_all_callbacks(call):
-    print(f"Received callback with data: {call.data}")
-
-
 
 
 #Расчёт каллорий________________________________________________________________________________________________________
@@ -108,22 +103,23 @@ async def get_buying_list(message):
     cr.connection.close()
 
 
-@dp.callback_query_handler(lambda call: call.data.startswith('product_buying'))
+
+@dp.callback_query_handler(text='product_buying1')
 async def send_confirm_message(call):
-    print("Received callback for product_buying1")
     await call.message.answer(f"Вы успешно приобрели {get_pr()[0][1]}!")
     await call.answer()
 
-@dp.callback_query_handler(lambda call: call.data.startswith('product_buying1'))
+@dp.callback_query_handler(text='product_buying2')
 async def send_confirm_message(call):
-    print("Received callback for product_buying2")
     await call.message.answer(f"Вы успешно приобрели {get_pr()[1][1]}!")
     await call.answer()
+
 
 @dp.callback_query_handler(text='product_buying3')
 async def send_confirm_message(call):
     await call.message.answer(f"Вы успешно приобрели {get_pr()[2][1]}!")
     await call.answer()
+
 
 @dp.callback_query_handler(text='product_buying4')
 async def send_confirm_message(call):
